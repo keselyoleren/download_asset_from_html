@@ -19,7 +19,9 @@ def download_static_files(url, output_folder):
     soup = BeautifulSoup(response.content, "html.parser")
 
     # Find all CSS and JS links
-    static_links = soup.find_all(["link", "script"], rel=["stylesheet", "javascript"])
+    # static_links = soup.find_all(["link", "script"], rel=["stylesheet", "javascript"])
+    static_links = soup.find_all(["link", "script", "img"], src=True) + soup.find_all("link", rel="stylesheet")
+
 
     # Download each CSS and JS file
     for link in static_links:
